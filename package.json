@@ -1,0 +1,23 @@
+{
+  "name": "serverlessproject",
+  "version": "1.0.0",
+  "description": "sample serverless proj",
+  "main": "index.js",
+  "dependencies": {
+    "aws-serverless-express": "^3.4.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "git": "^0.1.5",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.12",
+    "sequelize": "^6.6.5",
+    "serverless-s3-sync": "^1.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yashu",
+  "license": "MIT"
+}
