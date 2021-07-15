@@ -33,6 +33,7 @@ provider:
 
 plugins:
   - serverless-s3-sync
+  - serverless-offline
 
 custom:
   tableName : tasks
@@ -88,7 +89,7 @@ functions:
     handler : lambdaFunctions/insert-user.handler
     events:
       - http:
-          path : insert-user/
+          path : insert-user
           method : POST
           cors : true
 

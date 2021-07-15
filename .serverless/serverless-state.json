@@ -187,7 +187,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessproject/dev/1626344129469-2021-07-15T10:15:29.469Z/serverlessproject.zip"
+                "S3Key": "serverless/serverlessproject/dev/1626351324354-2021-07-15T12:15:24.354Z/serverlessproject.zip"
               },
               "Handler": "lambdaFunctions/getUser.handler",
               "Runtime": "nodejs12.x",
@@ -212,7 +212,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessproject/dev/1626344129469-2021-07-15T10:15:29.469Z/serverlessproject.zip"
+                "S3Key": "serverless/serverlessproject/dev/1626351324354-2021-07-15T12:15:24.354Z/serverlessproject.zip"
               },
               "Handler": "lambdaFunctions/postUser.handler",
               "Runtime": "nodejs12.x",
@@ -237,7 +237,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverlessproject/dev/1626344129469-2021-07-15T10:15:29.469Z/serverlessproject.zip"
+                "S3Key": "serverless/serverlessproject/dev/1626351324354-2021-07-15T12:15:24.354Z/serverlessproject.zip"
               },
               "Handler": "lambdaFunctions/insert-user.handler",
               "Runtime": "nodejs12.x",
@@ -255,34 +255,34 @@
               "InsertDashuserLogGroup"
             ]
           },
-          "GetUserLambdaVersion1U4IXkqiba0iOA3LNeDOHKMX4qel3tW2SY9BSXZCc": {
+          "GetUserLambdaVersionfC4zQjA8lvCzWMSI3JSM8h8RlBxw1OqsAx1dr6In2A": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUserLambdaFunction"
               },
-              "CodeSha256": "VX9ZXhQjEI430sdTsa3MNEU908fMbpARRoAu4N0aZtg="
+              "CodeSha256": "XSchR5innenVOs6OvmMQLaiMcGm+eG29prNdLgnOoKc="
             }
           },
-          "PostUserLambdaVersion1hIsvcPmidUKVNbqqxnoK4ceN867XJErXD1WqlQ0Dg": {
+          "PostUserLambdaVersionriHC0lgbVIqbL3g9HkfApNWHpwPqlWKUTn1gl0azE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PostUserLambdaFunction"
               },
-              "CodeSha256": "VX9ZXhQjEI430sdTsa3MNEU908fMbpARRoAu4N0aZtg="
+              "CodeSha256": "XSchR5innenVOs6OvmMQLaiMcGm+eG29prNdLgnOoKc="
             }
           },
-          "InsertDashuserLambdaVersionCDXULkcLp1c3SaRsGvH7b0btGZ3Nl7jDuxybGdWVw8Y": {
+          "InsertDashuserLambdaVersionxjjVZ97ljSe8ATX4WjP2q6L8XJo3fiag9YfEuwHZY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "InsertDashuserLambdaFunction"
               },
-              "CodeSha256": "VX9ZXhQjEI430sdTsa3MNEU908fMbpARRoAu4N0aZtg="
+              "CodeSha256": "XSchR5innenVOs6OvmMQLaiMcGm+eG29prNdLgnOoKc="
             }
           },
           "ApiGatewayRestApi": {
@@ -663,7 +663,7 @@
               "InsertDashuserLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1626344103752": {
+          "ApiGatewayDeployment1626351287988": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -829,7 +829,7 @@
           "GetUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserLambdaVersion1U4IXkqiba0iOA3LNeDOHKMX4qel3tW2SY9BSXZCc"
+              "Ref": "GetUserLambdaVersionfC4zQjA8lvCzWMSI3JSM8h8RlBxw1OqsAx1dr6In2A"
             },
             "Export": {
               "Name": "sls-serverlessproject-dev-GetUserLambdaFunctionQualifiedArn"
@@ -838,7 +838,7 @@
           "PostUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PostUserLambdaVersion1hIsvcPmidUKVNbqqxnoK4ceN867XJErXD1WqlQ0Dg"
+              "Ref": "PostUserLambdaVersionriHC0lgbVIqbL3g9HkfApNWHpwPqlWKUTn1gl0azE"
             },
             "Export": {
               "Name": "sls-serverlessproject-dev-PostUserLambdaFunctionQualifiedArn"
@@ -847,7 +847,7 @@
           "InsertDashuserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "InsertDashuserLambdaVersionCDXULkcLp1c3SaRsGvH7b0btGZ3Nl7jDuxybGdWVw8Y"
+              "Ref": "InsertDashuserLambdaVersionxjjVZ97ljSe8ATX4WjP2q6L8XJo3fiag9YfEuwHZY"
             },
             "Export": {
               "Name": "sls-serverlessproject-dev-InsertDashuserLambdaFunctionQualifiedArn"
@@ -975,7 +975,8 @@
       ]
     },
     "plugins": [
-      "serverless-s3-sync"
+      "serverless-s3-sync",
+      "serverless-offline"
     ],
     "pluginsData": {},
     "functions": {
@@ -1015,7 +1016,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetUserLambdaVersion1U4IXkqiba0iOA3LNeDOHKMX4qel3tW2SY9BSXZCc"
+        "versionLogicalId": "GetUserLambdaVersionfC4zQjA8lvCzWMSI3JSM8h8RlBxw1OqsAx1dr6In2A"
       },
       "postUser": {
         "handler": "lambdaFunctions/postUser.handler",
@@ -1053,7 +1054,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PostUserLambdaVersion1hIsvcPmidUKVNbqqxnoK4ceN867XJErXD1WqlQ0Dg"
+        "versionLogicalId": "PostUserLambdaVersionriHC0lgbVIqbL3g9HkfApNWHpwPqlWKUTn1gl0azE"
       },
       "insert-user": {
         "handler": "lambdaFunctions/insert-user.handler",
@@ -1091,7 +1092,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "InsertDashuserLambdaVersionCDXULkcLp1c3SaRsGvH7b0btGZ3Nl7jDuxybGdWVw8Y"
+        "versionLogicalId": "InsertDashuserLambdaVersionxjjVZ97ljSe8ATX4WjP2q6L8XJo3fiag9YfEuwHZY"
       }
     },
     "resources": {
@@ -1152,7 +1153,7 @@
     "artifact": "D:\\workspace\\serverlessProject\\.serverless\\serverlessproject.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverlessproject/dev/1626344129469-2021-07-15T10:15:29.469Z",
+    "artifactDirectoryName": "serverless/serverlessproject/dev/1626351324354-2021-07-15T12:15:24.354Z",
     "artifact": "serverlessproject.zip"
   }
 }

@@ -4,9 +4,12 @@ const sequelize = require('../DbUtility');
 
 const Employee = require('../models/employee');
 const { _200 } = require('./APIresponse_insertUser');
+const moment = require('moment');
+
+
 
 exports.handler = async event => {
-
+    
     // if(!event.pathParameters || !event.pathParameters.user_obj){
     //     return "Invalid path parameters";
     // }
@@ -16,22 +19,23 @@ exports.handler = async event => {
 
     Name = usr_obj.name;
     Desc = usr_obj.desc;
-    Dob = new Date(usr_obj.dob);
+    //Dob = moment().format(usr_obj);
+    Dob = moment().format(usr_obj.dob);
     Gender = usr_obj.gender;
     Profile_pic = usr_obj.profile_pic;
     Cover_pic = usr_obj.cover_pic;
     Job_title = usr_obj.job_title;
 
     console.log(Name+Desc+Gender);
-       
 
-        Employee.create({ name : "Yashu2", desc : 'wqerty', dob : new Date(), gender : "sdf", profile_pic : "asdfgh", cover_pic : "asdfg", job_title : "sdfgh"}).then(resposne => {
-            console.log(response);
-        }).catch(error => {
-            console.log(error);
-        });
-
-    return responses._200({message : "successfully inserted"});
+    try{
+        const sam = await Employee.create({ name : `${Name}`, desc : `${Desc}`, dob : `${Dob}`, gender : `${Gender}`, profile_pic : `${Profile_pic}`, cover_pic : `${Cover_pic}`, job_title : `${Job_title}`});
+        console.log(sam);
+        return responses._200({message : "success"});
+    }catch(err){
+        console.log(err);
+        return responses._400({message : "failed"});
+    }
 }
 
 
