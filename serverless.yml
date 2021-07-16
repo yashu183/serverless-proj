@@ -92,6 +92,13 @@ functions:
           path : insert-user
           method : POST
           cors : true
+  update-user:
+    handler : lambdaFunctions/update-user.handler
+    events:
+      - http:
+          path : update-user/{id}
+          method : PUT
+          cors : true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

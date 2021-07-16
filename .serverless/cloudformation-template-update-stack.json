@@ -89,6 +89,12 @@
         "LogGroupName": "/aws/lambda/serverlessproject-dev-insert-user"
       }
     },
+    "UpdateDashuserLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/serverlessproject-dev-update-user"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -173,7 +179,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessproject/dev/1626351324354-2021-07-15T12:15:24.354Z/serverlessproject.zip"
+          "S3Key": "serverless/serverlessproject/dev/1626428984668-2021-07-16T09:49:44.668Z/serverlessproject.zip"
         },
         "Handler": "lambdaFunctions/getUser.handler",
         "Runtime": "nodejs12.x",
@@ -198,7 +204,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessproject/dev/1626351324354-2021-07-15T12:15:24.354Z/serverlessproject.zip"
+          "S3Key": "serverless/serverlessproject/dev/1626428984668-2021-07-16T09:49:44.668Z/serverlessproject.zip"
         },
         "Handler": "lambdaFunctions/postUser.handler",
         "Runtime": "nodejs12.x",
@@ -223,7 +229,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverlessproject/dev/1626351324354-2021-07-15T12:15:24.354Z/serverlessproject.zip"
+          "S3Key": "serverless/serverlessproject/dev/1626428984668-2021-07-16T09:49:44.668Z/serverlessproject.zip"
         },
         "Handler": "lambdaFunctions/insert-user.handler",
         "Runtime": "nodejs12.x",
@@ -241,34 +247,69 @@
         "InsertDashuserLogGroup"
       ]
     },
-    "GetUserLambdaVersionfC4zQjA8lvCzWMSI3JSM8h8RlBxw1OqsAx1dr6In2A": {
+    "UpdateDashuserLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/serverlessproject/dev/1626428984668-2021-07-16T09:49:44.668Z/serverlessproject.zip"
+        },
+        "Handler": "lambdaFunctions/update-user.handler",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "serverlessproject-dev-update-user",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "UpdateDashuserLogGroup"
+      ]
+    },
+    "GetUserLambdaVersionFp2RgRanUbFk37EkLB9q1JTLXmfRU7969lI1VuGtMc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetUserLambdaFunction"
         },
-        "CodeSha256": "XSchR5innenVOs6OvmMQLaiMcGm+eG29prNdLgnOoKc="
+        "CodeSha256": "vFXMNyiHcPH7uwXuT0iRyEbYyhcXoRxgjntGvXYYR5k="
       }
     },
-    "PostUserLambdaVersionriHC0lgbVIqbL3g9HkfApNWHpwPqlWKUTn1gl0azE": {
+    "PostUserLambdaVersionAAWAityz2QD7kAkGfOxlLbGICxSGBMjp1ed02QW3RYw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PostUserLambdaFunction"
         },
-        "CodeSha256": "XSchR5innenVOs6OvmMQLaiMcGm+eG29prNdLgnOoKc="
+        "CodeSha256": "vFXMNyiHcPH7uwXuT0iRyEbYyhcXoRxgjntGvXYYR5k="
       }
     },
-    "InsertDashuserLambdaVersionxjjVZ97ljSe8ATX4WjP2q6L8XJo3fiag9YfEuwHZY": {
+    "InsertDashuserLambdaVersionPks5k4eQtO0ox3K0EvBxcjwcUgHS49q3zOwL9TyKHk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "InsertDashuserLambdaFunction"
         },
-        "CodeSha256": "XSchR5innenVOs6OvmMQLaiMcGm+eG29prNdLgnOoKc="
+        "CodeSha256": "vFXMNyiHcPH7uwXuT0iRyEbYyhcXoRxgjntGvXYYR5k="
+      }
+    },
+    "UpdateDashuserLambdaVersionT3yEK4rL2U8Bg6ap4tjaEqc0RnH7aoYHrStVMiuK8": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "UpdateDashuserLambdaFunction"
+        },
+        "CodeSha256": "vFXMNyiHcPH7uwXuT0iRyEbYyhcXoRxgjntGvXYYR5k="
       }
     },
     "ApiGatewayRestApi": {
@@ -371,6 +412,33 @@
           ]
         },
         "PathPart": "insert-user",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceUpdateDashuser": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "update-user",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceUpdateDashuserIdVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceUpdateDashuser"
+        },
+        "PathPart": "{id}",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -505,6 +573,51 @@
         },
         "ResourceId": {
           "Ref": "ApiGatewayResourceInsertDashuser"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodUpdateDashuserIdVarOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,PUT'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceUpdateDashuserIdVar"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -649,7 +762,53 @@
         "InsertDashuserLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1626351287988": {
+    "ApiGatewayMethodUpdateDashuserIdVarPut": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "PUT",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceUpdateDashuserIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "UpdateDashuserLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "UpdateDashuserLambdaPermissionApiGateway"
+      ]
+    },
+    "ApiGatewayDeployment1626428958552": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -661,9 +820,11 @@
         "ApiGatewayMethodGetDashuserIdVarOptions",
         "ApiGatewayMethodPostDashuserIdVarNameVarAgeVarOptions",
         "ApiGatewayMethodInsertDashuserOptions",
+        "ApiGatewayMethodUpdateDashuserIdVarOptions",
         "ApiGatewayMethodGetDashuserIdVarGet",
         "ApiGatewayMethodPostDashuserIdVarNameVarAgeVarPost",
-        "ApiGatewayMethodInsertDashuserPost"
+        "ApiGatewayMethodInsertDashuserPost",
+        "ApiGatewayMethodUpdateDashuserIdVarPut"
       ]
     },
     "GetUserLambdaPermissionApiGateway": {
@@ -777,6 +938,43 @@
         }
       }
     },
+    "UpdateDashuserLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateDashuserLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
     "bucketforserverless": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
@@ -815,7 +1013,7 @@
     "GetUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUserLambdaVersionfC4zQjA8lvCzWMSI3JSM8h8RlBxw1OqsAx1dr6In2A"
+        "Ref": "GetUserLambdaVersionFp2RgRanUbFk37EkLB9q1JTLXmfRU7969lI1VuGtMc"
       },
       "Export": {
         "Name": "sls-serverlessproject-dev-GetUserLambdaFunctionQualifiedArn"
@@ -824,7 +1022,7 @@
     "PostUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PostUserLambdaVersionriHC0lgbVIqbL3g9HkfApNWHpwPqlWKUTn1gl0azE"
+        "Ref": "PostUserLambdaVersionAAWAityz2QD7kAkGfOxlLbGICxSGBMjp1ed02QW3RYw"
       },
       "Export": {
         "Name": "sls-serverlessproject-dev-PostUserLambdaFunctionQualifiedArn"
@@ -833,10 +1031,19 @@
     "InsertDashuserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "InsertDashuserLambdaVersionxjjVZ97ljSe8ATX4WjP2q6L8XJo3fiag9YfEuwHZY"
+        "Ref": "InsertDashuserLambdaVersionPks5k4eQtO0ox3K0EvBxcjwcUgHS49q3zOwL9TyKHk"
       },
       "Export": {
         "Name": "sls-serverlessproject-dev-InsertDashuserLambdaFunctionQualifiedArn"
+      }
+    },
+    "UpdateDashuserLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "UpdateDashuserLambdaVersionT3yEK4rL2U8Bg6ap4tjaEqc0RnH7aoYHrStVMiuK8"
+      },
+      "Export": {
+        "Name": "sls-serverlessproject-dev-UpdateDashuserLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {

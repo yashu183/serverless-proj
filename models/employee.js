@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../DbUtility');
 
-const Employee = sequelize.define("employees", {
+const Employee = sequelize.define("Employee", {
     id : {
         type : Sequelize.INTEGER,
         autoIncrement : true,
@@ -37,5 +37,5 @@ const Employee = sequelize.define("employees", {
         allowNull : false
     }
 });
-
+sequelize.sync();
 module.exports = Employee;
