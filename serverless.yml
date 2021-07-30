@@ -99,6 +99,14 @@ functions:
           path : update-user/{id}
           method : PUT
           cors : true
+  DbTypescript:
+    handler : DbTypescript.handler
+    events:
+      - http:
+          path : seqtype
+          method : POST
+          cors : true
+          
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
